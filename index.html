@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Чтобы сайт нормально выглядел на телефоне -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Для тебя ❤️</title>
+
+  <style>
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #fff8f2;
+      --rose: #d96b7d;
+      --deep: #5c2635;
+      --gold: #c69b62;
+      --paper: rgba(255, 255, 255, 0.78);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      color: var(--deep);
+
+      background:
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(255, 255, 255, 0.95),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(238, 183, 192, 0.28),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #fffaf6,
+          #f8e5e5 48%,
+          #fff6ec
+        );
+
+      overflow-x: hidden;
+    }
+
+
+
+    .page {
+      min-height: 100vh;
+
+      display: grid;
+      place-items: center;
+
+      padding: 35px 18px;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+
+
+
+    .petal {
+      position: fixed;
+
+      top: -30px;
+
+      width: 12px;
+      height: 18px;
+
+      border-radius: 80% 20% 80% 20%;
+
+      background: rgba(217, 107, 125, 0.28);
+
+      transform: rotate(25deg);
+
+      animation: fall linear infinite;
+
+      pointer-events: none;
+    }
+
+
+    @keyframes fall {
+
+      to {
+        transform:
+          translate3d(100px, 115vh, 0)
+          rotate(390deg);
+      }
+
+    }
+
+
+    .card {
+      width: min(700px, 100%);
+
+      padding: clamp(28px, 7vw, 62px);
+
+      text-align: center;
+
+      background: var(--paper);
+
+      border: 1px solid rgba(198, 155, 98, 0.35);
+
+      border-radius: 28px;
+
+      box-shadow:
+        0 25px 80px rgba(92, 38, 53, 0.15);
+
+      backdrop-filter: blur(12px);
+
+      position: relative;
+      z-index: 2;
+
+      animation: appear 1.2s ease both;
+    }
+
+
+   
+
+    @keyframes appear {
+
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+    }
+
+
+
+
+    .small {
+      letter-spacing: 0.25em;
+
+      text-transform: uppercase;
+
+      font-size: 11px;
+
+      opacity: 0.65;
+
+      margin-bottom: 22px;
+    }
+
+
+
+
+    h1 {
+      margin: 0;
+
+      font-size: clamp(38px, 8vw, 68px);
+
+      font-weight: 400;
+
+      line-height: 1.05;
+    }
+    .counter { display: flex; justify-content: center; gap: 25px;
+margin-top: 25px;}
+.counter div { display: flex; flex-direction: column; align-items: center; }
+.counter span { font-size: 38px; color: var(--rose); }
+.counter small { font-size: 12px; opacity: 0.6; text-transform: uppercase; }
+.time { margin-top: 15px;
+font-size: 24px;
+
+letter-spacing: 2px;
+
+color: var(--deep);}
+.time .heart { display: inline-block; color: var(--rose); }
+
+
+
+    .heart {
+      display: inline-block;
+
+      color: var(--rose);
+
+      animation: heartbeat 1.8s ease-in-out infinite;
+    }
+
+
+    @keyframes heartbeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      15% {
+        transform: scale(1.13);
+      }
+
+      30% {
+        transform: scale(1);
+      }
+
+    }
+
+
+
+
+    .message {
+      max-width: 510px;
+
+      margin: 25px auto 34px;
+
+      font-size: clamp(17px, 3vw, 21px);
+
+      line-height: 1.75;
+
+      color: #704352;
+    }
+
+
+
+    .envelope-wrap {
+
+      margin: 18px auto 30px;
+
+      width: 210px;
+      height: 145px;
+
+      position: relative;
+
+      cursor: pointer;
+
+      perspective: 700px;
+    }
+
+
+    .envelope {
+
+      width: 100%;
+      height: 100%;
+
+      position: relative;
+
+      border-radius: 8px;
+
+      background: #e9aab5;
+      box-shadow:
+        0 14px 30px rgba(92, 38, 53, 0.18);
+
+      transition: transform 0.5s ease;
+    }
+
+
+   
+
+    .envelope::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          145deg,
+          transparent 49%,
+          rgba(255, 255, 255, 0.22) 50%
+        );
+
+      border-radius: inherit;
+    }
+
+
+
+    .flap {
+
+      position: absolute;
+
+      inset: 0 0 auto;
+
+      height: 78px;
+
+      background: #d98b9a;
+
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          50% 100%
+        );
+
+      transform-origin: top;
+
+      transition: transform 0.65s ease;
+
+      z-index: 4;
+    }
+
+
+
+    .letter {
+
+      position: absolute;
+
+      width: 82%;
+      height: 92px;
+
+      left: 9%;
+      bottom: 18px;
+
+      background: #fffaf4;
+
+      border-radius: 5px;
+
+      display: grid;
+
+      place-items: center;
+
+      font-size: 28px;
+
+      color: var(--rose);
+
+      box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.08);
+
+      transition:
+        transform 0.7s ease;
+
+      z-index: 2;
+    }
+
+
+
+    .envelope-wrap.open .flap {
+
+      transform: rotateX(180deg);
+
+      z-index: 1;
+    }
+
+
+    .envelope-wrap.open .letter {
+
+      transform: translateY(-70px);
+
+      z-index: 5;
+    }
+
+
+
+    .hint {
+
+      font-size: 13px;
+
+      opacity: 0.6;
+
+      margin-top: 10px;
+    }
+
+
+ 
+
+    .video-box {
+
+      display: none;
+
+      margin-top: 35px;
+
+      animation: appear 0.8s ease both;
+    }
+
+
+
+
+    .video-box.show {
+
+      display: block;
+    }
+
+
+    .video-frame {
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      border: 0;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 15px 40px rgba(92, 38, 53, 0.18);
+
+      background: #21151a;
+    }
+
+
+
+    .watch {
+
+      display: inline-block;
+
+      margin-top: 20px;
+
+      padding: 13px 23px;
+
+      border-radius: 999px;
+
+      background: var(--deep);
+
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 15px;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    .watch:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 8px 20px rgba(92, 38, 53, 0.25);
+    }
+
+
+
+
+    .footer {
+
+      margin-top: 35px;
+
+      font-size: 14px;
+
+      opacity: 0.65;
+
+      font-style: italic;
+    }
+
+
+    .signature {
+
+      margin-top: 16px;
+
+      font-size: 20px;
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main class="page">
+
+    <div class="card">
+
+      <div class="small">
+       Ты для меня целый мир
+      </div>
+
+
+     <h1>
+    Мы вместе уже
+</h1>
+<div class="counter">
+    <div>
+        <span id="years">0</span>
+        <small>года</small>
+    </div>
+    <div>
+        <span id="months">0</span>
+        <small>месяцев</small>
+    </div>
+    <div>
+        <span id="days">0</span>
+        <small>дней</small>
+    </div>
+</div>
+
+      <p class="message">
+
+        Ты превратила мою жизнь в то место, куда хочется 
+        возвращаться. Я готов преодолевать любые трудности, 
+        и я делаю это с радостью, потому что 
+        люблю тебя больше всего на свете
+
+      </p>
+
+
+
+      <div
+        class="envelope-wrap"
+        id="envelope"
+        title="Нажми на конверт"
+      >
+
+        <div class="envelope">
+
+          <div class="flap"></div>
+
+          <div class="letter">
+            ♥
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="hint">
+        нажми на конверт
+      </div>
+
+
+            <section
+        class="video-box"
+        id="videoBox"
+      >
+
+        <p class="message">
+
+          А теперь — посмотри это до конца.
+
+        </p>
+
+
+       
+         <div class="tiktok-container">
+    <blockquote
+        class="tiktok-embed"
+        cite="https://www.tiktok.com/@kino.dreamss/video/7180348356072377606"
+        data-video-id="7180348356072377606">
+    </blockquote>
+</div>
+<a
+    class="watch"
+    href="https://www.tiktok.com/@kino.dreamss/video/7180348356072377606"
+    target="_blank"
+    rel="noopener">
+    Открыть видео в TikTok ♥
+</a>
+       
+
+        <div class="footer">
+
+          Я надеюсь, что этот маленький
+          подарок заставит тебя улыбнуться.
+
+          <div class="signature">
+            С любовью ❤️
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+
+
+    const envelope =
+      document.getElementById("envelope");
+
+    const videoBox =
+      document.getElementById("videoBox");
+
+
+
+    envelope.addEventListener("click", () => {
+
+    
+
+      envelope.classList.toggle("open");
+
+
+
+      if (envelope.classList.contains("open")) {
+
+    
+
+        setTimeout(() => {
+
+   
+          videoBox.classList.add("show");
+
+
+
+          videoBox.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+        }, 450);
+
+      }
+
+    });
+
+
+
+    for (let i = 0; i < 18; i++) {
+
+  
+
+      const petal =
+        document.createElement("div");
+
+
+     
+      
+
+      petal.className = "petal";
+
+
+    
+
+      petal.style.left =
+        Math.random() * 100 + "vw";
+
+
+    
+
+      petal.style.animationDuration =
+        (7 + Math.random() * 8) + "s";
+
+
+  
+
+      petal.style.animationDelay =
+        (-Math.random() * 12) + "s";
+
+
+      petal.style.opacity =
+        0.15 + Math.random() * 0.45;
+
+
+     
+
+      document.body.appendChild(petal);
+
+    }
+    const startDate = new Date("2023-12-30T00:00:00");
+function updateCounter() {
+const now = new Date();
+
+let years = now.getFullYear() - startDate.getFullYear();
+
+let months = now.getMonth() - startDate.getMonth();
+
+let days = now.getDate() - startDate.getDate();
+
+if (days < 0) {
+    months--;
+
+    const previousMonth = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        0
+    );
+
+    days += previousMonth.getDate();
+}
+
+if (months < 0) {
+    years--;
+    months += 12;
+}
+
+
+const totalMilliseconds =
+    now - startDate;
+
+const totalSeconds =
+    Math.floor(totalMilliseconds / 1000);
+
+const seconds =
+    totalSeconds % 60;
+
+const totalMinutes =
+    Math.floor(totalSeconds / 60);
+
+const minutes =
+    totalMinutes % 60;
+
+const totalHours =
+    Math.floor(totalMinutes / 60);
+
+const hours =
+    totalHours % 24;
+
+
+document.getElementById("years").textContent = years;
+
+document.getElementById("months").textContent = months;
+
+document.getElementById("days").textContent = days;
+
+document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");}
+updateCounter();
+setInterval(updateCounter, 1000);
+
+  </script>
+  <script async src="https://www.tiktok.com/embed.js"></script>
+
+</body>
+</html>
